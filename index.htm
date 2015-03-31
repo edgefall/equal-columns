@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Floated Columns with Equal Heights</title>
+		
+		<style>
+			
+			body {
+				margin:0;
+			}
+			
+			.column-wrapper {
+				overflow:hidden; /* makes our column float containment work */
+				position:relative; /* ensure position absolute is done relative to this container */
+				min-height:100vh; /* nice window dressing so the columns will be at least the height of the screen (vh = viewport height)*/
+			}
+			
+			.column {
+				color:white; /* each column gets white text */
+				float:left; /* columns stack next to each other (otherwise they'd be one on top of the other) */
+				width:25%; /* because. */
+			}
+			
+			.content {
+				padding:2em; /* nice padding between the edge of each column and the text */
+				text-align:justify; /* newspaper looking text alignment */
+			}
+			
+			.content:first-letter {
+				font-size:2em;
+				letter-spacing:2px;
+			}
+			
+			.column1 { background-color:orange; } /* figure this part out yourself */
+			.column2 { background-color:purple; }
+			.column3 { background-color:black; }
+			.column4 { background-color:gray; }
+			
+			.column-background { /* 100% height doesnt work to force fill the columns but we can use top / bottom of .column-wrapper */
+				position:absolute; /* we need to absolutely position each "background" within their columns */
+				top:0; /* start the background div at the top of the .column-wrapper (because it's using position:relative; ) */
+				bottom:0; /* end the background at the bottom of .column-wrapper */
+				width:100%; /* set width to 100% of our parent column. left:0 / right:0 won't work because it'll take up all of .column-wrapper */
+				background-color:inherit; /* make our background color what we set on the parent element */
+				z-index:-1; /* layer the column background behind all other elements within the column */
+			}
+			
+			@media screen and (max-width: 800px) { /* this is a media query, it only runs if the viewport is less than 800px wide */
+				.column {
+					width:33.33333%; /* each column goes from 25% to 33% wide */
+				}
+				
+				.column4 {
+					float:none; /* the 4th column has it's float removed so it takes up the full remaining width of the line */
+					clear:left; /* we clear our float lefts from columbns 1-3, this makes it so column4 is placed entirely apart from the other columns */
+					width:auto; /* we need to explicity set width to either auto or 100% so .column4 doesn't inherit width:33.33333% from .column */
+				}
+				
+				.column4 .column-background {
+					display:none; /* our background trick no longer applies and would otherwise render the background on top of one of the above columns */
+				}
+				
+				.column-wrapper {
+					min-height:none; /* if we set a minimum height with the column text too short we run into issues of the bottom gray div overlapping the minimal height of the column background divs */
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h1>Floated Columns with Equal Heights</h1>
+		
+		<div class="column-wrapper">
+			<div class="column column1">
+				<div class="content" contenteditable="true"> <!-- contenteditable lets you click the text and type in the browser -->
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<div class="column-background"></div>
+			</div>
+			<div class="column column2">
+				<div class="content" contenteditable="true">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<div class="column-background"></div>
+			</div>
+			<div class="column column3">
+				<div class="content" contenteditable="true">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<div class="column-background"></div>
+			</div>
+			<div class="column column4">
+				<div class="content" contenteditable="true">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<div class="column-background"></div>
+			</div>
+		</div>
+		
+		<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+		
+	</body>
+</html>
