@@ -2,11 +2,18 @@
 <html lang="en">
 	<head>
 		<title>Floated Columns with Equal Heights</title>
-		
+		<link href='http://fonts.googleapis.com/css?family=Merriweather:300' rel='stylesheet' type='text/css'>
 		<style>
 			
 			body {
 				margin:0;
+				font:11.5pt 'Merriweather', serif;
+				background-color:#F4F4F4;
+			}
+			
+			h1 {
+				font-weight:normal;
+				font-size:1.5em;
 			}
 			
 			html {
@@ -26,7 +33,7 @@
 			.container {
 				margin:0 auto;
 				width:100%;
-				padding:0 1em;
+				padding:1em 1em 2em 2em;
 				max-width:75em;
 			}
 			
@@ -46,10 +53,10 @@
 				letter-spacing:2px;
 			}
 			
-			.column1 { background-color:orange; } /* figure this part out yourself */
-			.column2 { background-color:purple; }
-			.column3 { background-color:black; }
-			.column4 { background-color:gray; }
+			.column1 { background-color:#4D6E94; } /* figure this part out yourself */
+			.column2 { background-color:#52899E; }
+			.column3 { background-color:#4D8687; }
+			.column4 { background-color:#529E8A; }
 			
 			.column-background { /* 100% height doesnt work to force fill the columns but we can use top / bottom of .column-wrapper */
 				position:absolute; /* we need to absolutely position each "background" within their columns */
@@ -60,7 +67,7 @@
 				z-index:-1; /* layer the column background behind all other elements within the column */
 			}
 			
-			@media screen and (max-width: 800px) { /* this is a media query, it only runs if the viewport is less than 800px wide */
+			@media screen and (max-width: 900px) { /* this is a media query, it only runs if the viewport is less than 800px wide */
 				.column {
 					width:33.33333%; /* each column goes from 25% to 33% wide */
 				}
