@@ -14,6 +14,7 @@
 			h1 {
 				font-weight:normal;
 				font-size:1.5em;
+				margin:1em 0 1.5em 0;
 			}
 			
 			html {
@@ -33,7 +34,7 @@
 			.container {
 				margin:0 auto;
 				width:100%;
-				padding:1em 1em 2em 2em;
+				padding:1em 2em 2em 2em;
 				max-width:75em;
 			}
 			
@@ -41,6 +42,7 @@
 				color:white; /* each column gets white text */
 				float:left; /* columns stack next to each other (otherwise they'd be one on top of the other) */
 				width:25%; /* because. */
+				transition:margin .5s ease;
 			}
 			
 			.content {
@@ -93,6 +95,13 @@
 					float:none;
 					clear:left;
 					width:auto;
+					margin:0 -2em;
+					
+					transition:margin .5s ease;
+				}
+				
+				.column-wrapper {
+					overflow:visible;
 				}
 			}
 		</style>
